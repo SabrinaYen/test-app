@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+// Library used
+import { useEffect, useState } from "react";
+import "./App.css";
 
-function App() {
+const App = function () {
+  // useState
+  const [data, setData] = useState([]);
+
+  // function to get json
+  const getData = () => {
+    fetch("data.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        setData(myJson);
+      });
+  };
+
+  // using useEffect to get synchoronize data
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    // display data
+    <div className="container">
+      {data != null &&
+        data.map((item, index) => (
+          <div className="table">
+            <div>
+              <span class="circle"></span>
+            </div>
+            <div>
+              Name:{" "}
+              {item.firstName && item.lastName
+                ? item.firstName + " " + item.lastName
+                : ""}
+            </div>
+
+            <div>Email: {item.email ? item.email : ""}</div>
+            <div>Contact: {item.phone ? item.phone : ""}</div>
+          </div>
+        ))}
     </div>
   );
-}
+};
 
 export default App;

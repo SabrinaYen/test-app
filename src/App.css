@@ -36,3 +36,47 @@
     transform: rotate(360deg);
   }
 }
+
+/* css starting here */
+.container {
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: small;
+ padding-top: 5px;
+ background-color: #F0F2F5;
+}
+.table {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #F0F2F5;
+}
+.table > div {
+  flex: 1;
+  margin: 2px 0 2px 0;
+  background-color: #ffffff;
+  padding: 5px;
+  align-items: center;
+}
+.table > div > span {
+  display: block;
+  margin: 0 auto;
+}
+.circle {
+  height: 25px;
+  width: 25px;
+  background-color: #FFA500;
+  border-radius: 50%;
+} 
+
+/* mobile responsive */
+@media (max-width: 800px) {
+  .table > div > span {
+    display: flex;
+    margin: 0;
+  }
+  .table > div {
+    padding: 2px;
+  }
+  .table {
+    flex-direction: column;
+  }
+}
